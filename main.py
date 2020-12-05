@@ -8,6 +8,7 @@ from telegram_bot.bot import Bot
 
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
+TELEGRAM_USER_ID = os.getenv("TELEGRAM_USER_ID", "")
 
 if TELEGRAM_BOT_TOKEN == "":
     raise Exception("TELEGRAM_BOT_TOKEN environmental variable is not set")
@@ -28,6 +29,8 @@ app.add_middleware(
 @app.post("/github/repository/webhook/")
 def receive_github_repository_webhook(payload: PushWebhookPayload):
     print([payload.__dict__])
+
+    bot.send_message(chat_id=TELEGRAM_USER_ID, text="Push from: {}".format(payload.pusher.name))
 
     return {"status": "OK"}
 
