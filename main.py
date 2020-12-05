@@ -27,8 +27,6 @@ app.add_middleware(
 
 @app.post("/github/repository/webhook/")
 def receive_github_repository_webhook(payload: PushWebhookPayload):
-    print([payload.__dict__])
-
     message = "New push in repository <a href='{}'>{}</a>".format(
         payload.repository.html_url, payload.repository.full_name
     )
@@ -45,13 +43,13 @@ def receive_github_repository_webhook(payload: PushWebhookPayload):
             message += "\n  <i>Message:</i> {}".format(commit.message)
 
             if len(commit.added) > 0:
-                message += "\n  <i>Added:</i> {}".format(",".join(commit.added))
+                message += "\n  <i>Added:</i> {}".format(", ".join(commit.added))
 
             if len(commit.removed) > 0:
-                message += "\n  <i>Removed:</i> {}".format(",".join(commit.removed))
+                message += "\n  <i>Removed:</i> {}".format(", ".join(commit.removed))
 
             if len(commit.modified) > 0:
-                message += "\n  <i>Modified:</i> {}".format(",".join(commit.modified))
+                message += "\n  <i>Modified:</i> {}".format(", ".join(commit.modified))
 
     bot.send_message(chat_id=TELEGRAM_USER_ID, parse_mode="HTML", text=message)
 
