@@ -9,8 +9,7 @@ from config import AppConfig as config
 
 if config.TELEGRAM_BOT_TOKEN == "":
     raise Exception("TELEGRAM_BOT_TOKEN environmental variable is not set")
-else:
-    bot = Bot(config.TELEGRAM_BOT_TOKEN)
+bot = Bot(config.TELEGRAM_BOT_TOKEN)
 
 if config.TELEGRAM_USER_ID == "":
     raise Exception("TELEGRAM_USER_ID environmental variable is not set")
