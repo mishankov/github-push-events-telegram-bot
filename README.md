@@ -1,2 +1,2 @@
 # git-repo-telgram-bot
-Receive events from GitHub repository in Telegram bot
+Receive `push` events from GitHub repository in Telegram bot
