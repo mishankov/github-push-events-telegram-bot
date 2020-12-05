@@ -5,6 +5,7 @@ install:
 	pip3 install -r requirements.txt
 
 run:
+	. venv/bin/activate
 	gunicorn --chdir src main:app -k uvicorn.workers.UvicornWorker
 
 push-all:

@@ -16,7 +16,7 @@ if config.TELEGRAM_USER_ID == "":
     raise Exception("TELEGRAM_USER_ID environmental variable is not set")
 
 
-app = FastAPI()
+app = FastAPI(openapi_url=config.FASTAPI_OPENAPI_URL)
 
 app.add_middleware(
     CORSMiddleware,
