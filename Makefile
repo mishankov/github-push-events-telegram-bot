@@ -5,7 +5,7 @@ install:
 	pip3 install -r requirements.txt
 
 run:
-	gunicorn main:app -k uvicorn.workers.UvicornWorker
+	gunicorn --chdir src main:app -k uvicorn.workers.UvicornWorker
 
 push-all:
 ifdef m
