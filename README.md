@@ -33,6 +33,10 @@ gunicorn --chdir src main:app -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000
 
 This whould run you application in port `8000`. More about that in [Gunicorn documentation](https://docs.gunicorn.org/en/stable/configure.html)
 
+## Deploy with Heroku
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 ## Cofigure GitHub webhook
 
 Configure GitHub repository to send events about push events to `/github/repository/webhook/{GITHUB_WEBHOOK_SECRET}/` path on your server. More about that in [GitHub webhooks documentation](https://docs.github.com/en/free-pro-team@latest/developers/webhooks-and-events/about-webhooks)
