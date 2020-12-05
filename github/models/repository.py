@@ -2,7 +2,7 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-from models.user import User
+from github.models.user import User
 
 
 class Repository(BaseModel):

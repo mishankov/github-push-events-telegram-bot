@@ -2,7 +2,7 @@ from typing import Optional, List
 
 from pydantic import BaseModel
 
-from models.author import Author
+from github.models.author import Author
 
 
 class Commit(BaseModel):

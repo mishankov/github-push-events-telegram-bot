@@ -2,10 +2,10 @@ from typing import Optional, List
 
 from pydantic import BaseModel
 
-from models.commit import Commit
-from models.author import Author
-from models.repository import Repository
-from models.user import User
+from github.models.commit import Commit
+from github.models.author import Author
+from github.models.repository import Repository
+from github.models.user import User
 
 
 class PushWebhookPayload(BaseModel):

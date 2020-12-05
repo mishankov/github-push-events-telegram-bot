@@ -1,2 +1,2 @@
 def escape_html(text: str) -> str:
-    pass
+    return text.replace("<", "&lt").replace(">", "&gt").replace("&", "&amp")
