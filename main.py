@@ -30,7 +30,7 @@ app.add_middleware(
 def receive_github_repository_webhook(payload: PushWebhookPayload):
     print([payload.__dict__])
 
-    bot.send_message(chat_id=TELEGRAM_USER_ID, text="Push from: *{}*".format(payload.pusher.name))
+    bot.send_message(chat_id=TELEGRAM_USER_ID, parse_mode="MarkdownV2", text="Push from: *{}*".format(payload.pusher.name))
 
     return {"status": "OK"}
 
