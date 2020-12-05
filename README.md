@@ -1,6 +1,7 @@
 # GitHub push events Telegram bot
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-black)](https://github.com/mishankov/github-push-events-telegram-bot/actions?query=workflow%3Ablack)
+[![CodeFactor](https://www.codefactor.io/repository/github/mishankov/github-push-events-telegram-bot/badge/main)](https://www.codefactor.io/repository/github/mishankov/github-push-events-telegram-bot/overview/main)
 
 Receive `push` events from GitHub repository in Telegram bot
 
