@@ -1,7 +1,8 @@
 import os
-from typing import Optional, List
+from typing import List
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
@@ -10,6 +11,14 @@ if TELEGRAM_BOT_TOKEN == "":
     raise Exception("TELEGRAM_BOT_TOKEN is not passed")
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 class User(BaseModel):
@@ -64,4 +73,9 @@ class PushWebhookPayload(BaseModel):
 def receive_github_repository_webhook(payload: PushWebhookPayload):
     print([payload.__dict__])
 
+    return {"status": "OK"}
+
+
+@app.get("/")
+def health_check():
     return {"status": "OK"}
