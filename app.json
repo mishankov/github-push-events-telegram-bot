@@ -7,7 +7,7 @@
   "env": {
     "TELEGRAM_BOT_TOKEN": {
       "description": "Token of Telegram bot",
-      "generator": "12345:xyz",
+      "value": "12345:xyz",
       "required": true
     },
     "TELEGRAM_USER_ID": {
@@ -17,7 +17,7 @@
     },
     "GITHUB_WEBHOOK_SECRET": {
       "description": "Secret part of your webhook URL",
-      "generator": "secret",
+      "value": "secret",
       "required": false
     },
     "FASTAPI_OPENAPI_URL": {
