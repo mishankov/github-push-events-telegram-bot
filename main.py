@@ -1,14 +1,18 @@
 import os
-from typing import List
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+
+from models.push_webhook_payload import PushWebhookPayload
+from telegram_bot.bot import Bot
+
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
 
 if TELEGRAM_BOT_TOKEN == "":
-    raise Exception("TELEGRAM_BOT_TOKEN is not passed")
+    raise Exception("TELEGRAM_BOT_TOKEN environmental variable is not set")
+else:
+    bot = Bot(TELEGRAM_BOT_TOKEN)
 
 app = FastAPI()
 
@@ -21,55 +25,7 @@ app.add_middleware(
 )
 
 
-class User(BaseModel):
-    login: str
-    name: str
-    email: str
-    id: int
-    html_url: str
-
-
-class Repository(BaseModel):
-    id: int
-    node_id: str
-    name: str
-    full_name: str
-    html_url: str
-    stargazers_count: int
-    watchers_count: int
-    language: str
-    private: bool
-    owner: User
-
-
-class Author(BaseModel):
-    name: str
-    email: str
-
-
-class Commit(BaseModel):
-    id: str
-    timestamp: str
-    message: str
-    author: Author
-    url: str
-    distinct: bool
-    added: List[str]
-    modified: List[str]
-    removed: List[str]
-
-
-class PushWebhookPayload(BaseModel):
-    ref: str
-    before: str
-    after: str
-    commits: List[Commit]
-    pusher: Author
-    repository: Repository
-    sender: User
-
-
-@app.post("/github/repository/webhooks/")
+@app.post("/github/repository/webhook/")
 def receive_github_repository_webhook(payload: PushWebhookPayload):
     print([payload.__dict__])
 
