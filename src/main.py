@@ -11,8 +11,8 @@ if config.TELEGRAM_BOT_TOKEN == "":
     raise Exception("TELEGRAM_BOT_TOKEN environmental variable is not set")
 bot = Bot(config.TELEGRAM_BOT_TOKEN)
 
-if config.TELEGRAM_USER_ID == "":
-    raise Exception("TELEGRAM_USER_ID environmental variable is not set")
+if config.TELEGRAM_CHAT_ID == "":
+    raise Exception("TELEGRAM_CHAT_ID environmental variable is not set")
 
 
 app = FastAPI(openapi_url=config.FASTAPI_OPENAPI_URL)
@@ -60,7 +60,7 @@ def receive_github_repository_webhook(payload: PushWebhookPayload):
                     escape_html(", ".join(commit.modified))
                 )
 
-    bot.send_message(chat_id=config.TELEGRAM_USER_ID, parse_mode="HTML", text=message)
+    bot.send_message(chat_id=config.TELEGRAM_CHAT_ID, parse_mode="HTML", text=message)
 
     return {"status": "OK"}
 

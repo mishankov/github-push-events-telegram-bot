@@ -10,7 +10,7 @@
       "value": "12345:xyz",
       "required": true
     },
-    "TELEGRAM_USER_ID": {
+    "TELEGRAM_CHAT_ID": {
       "description": "Chat id to send messages to",
       "value": "12345",
       "required": true

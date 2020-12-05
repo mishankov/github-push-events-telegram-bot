@@ -16,7 +16,7 @@ This application has some required and optional environment variables to set
 ### Required environment variables
 
 - `TELEGRAM_BOT_TOKEN` - token of Telegram bot. [Documentation for Telegram bots](https://core.telegram.org/bots)
-- `TELEGRAM_USER_ID` - chat id to send messages to. Get it from [`@my_id_bot`](https://t.me/my_id_bot) in Telegram for example
+- `TELEGRAM_CHAT_ID` - chat id to send messages to. Get it from [`@my_id_bot`](https://t.me/my_id_bot) in Telegram for example
 
 ### Optional environment variables
 
