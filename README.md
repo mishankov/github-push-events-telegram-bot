@@ -1,4 +1,7 @@
 # GitHub push events Telegram bot
+
+[![Code style: black](https://img.shields.io/badge/code%20style-black-black)](https://github.com/mishankov/github-push-events-telegram-bot/actions?query=workflow%3Ablack)
+
 Receive `push` events from GitHub repository in Telegram bot
 
 ## Installation

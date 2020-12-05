@@ -8,6 +8,13 @@ run:
 	. venv/bin/activate
 	gunicorn --chdir src main:app -k uvicorn.workers.UvicornWorker
 
+commit-all:
+ifdef m
+	black .
+	git add .
+	git commit -m "${m}"
+endif
+
 push-all:
 ifdef m
 	black .
