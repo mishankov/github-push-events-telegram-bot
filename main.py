@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from models.push_webhook_payload import PushWebhookPayload
-from telegram_bot.bot import Bot
+from telegram.bot import Bot
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_USER_ID = os.getenv("TELEGRAM_USER_ID", "")
@@ -29,31 +29,31 @@ app.add_middleware(
 def receive_github_repository_webhook(payload: PushWebhookPayload):
     print([payload.__dict__])
 
-    message = "New push in repository [{}]({})".format(
-        payload.repository.full_name, payload.repository.html_url
+    message = "New push in repository <a href='{}'>{}</a>".format(
+        payload.repository.html_url, payload.repository.full_name
     )
-    # print(message)
+
     if payload.sender is not None:
-        message += " from [{}]({})".format(
-            payload.sender.login, payload.sender.html_url
+        message += " from <a href='{}'>{}</a>".format(
+            payload.sender.html_url, payload.sender.login
         )
-    # print(message)
+
     if len(payload.commits) > 0:
-        message += "\n *Commits:*"
+        message += "\n<b>Commits:</b>"
         for commit in payload.commits:
-            message += "\n\- _[{}]({})_".format(commit.id, commit.url)
-            message += "\n  _Message:_ {}".format(commit.message)
+            message += "\n<a href='{}'>{}</a>".format(commit.url, commit.id)
+            message += "\n  <i>Message:</i> {}".format(commit.message)
 
             if len(commit.added) > 0:
-                message += "\n  _Added:_ {}".format(",".join(commit.added))
+                message += "\n  <i>Added:</i> {}".format(",".join(commit.added))
 
             if len(commit.removed) > 0:
-                message += "\n  _Removed:_ {}".format(",".join(commit.removed))
+                message += "\n  <i>Removed:</i> {}".format(",".join(commit.removed))
 
             if len(commit.modified) > 0:
-                message += "\n  _Modified:_ {}".format(",".join(commit.modified))
+                message += "\n  <i>Modified:</i> {}".format(",".join(commit.modified))
 
-    bot.send_message(chat_id=TELEGRAM_USER_ID, parse_mode="MarkdownV2", text=message)
+    bot.send_message(chat_id=TELEGRAM_USER_ID, parse_mode="HTML", text=message)
 
     return {"status": "OK"}
 
