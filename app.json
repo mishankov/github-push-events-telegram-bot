@@ -1,0 +1,32 @@
+{
+  "name": "GitHub push events Telegram bot",
+  "description": "Receive push events from GitHub repository in Telegram bot",
+  "website": "https://github.com/mishankov/github-push-events-telegram-bot",
+  "repository": "https://github.com/mishankov/github-push-events-telegram-bot",
+  "keywords": ["python", "fastapi", "github", "webhook", "telegram"],
+  "scripts": {
+    "postdeploy": "bundle exec rake bootstrap"
+  },
+  "env": {
+    "TELEGRAM_BOT_TOKEN": {
+      "description": "Token of Telegram bot",
+      "generator": "12345:xyz",
+      "required": true
+    },
+    "TELEGRAM_USER_ID": {
+      "description": "Chat id to send messages to",
+      "value": "12345",
+      "required": true
+    },
+    "GITHUB_WEBHOOK_SECRET": {
+      "description": "Secret part of your webhook URL",
+      "generator": "secret",
+      "required": false
+    },
+    "FASTAPI_OPENAPI_URL": {
+      "description": "Path to OpenAPI schema",
+      "value": "/api/v1/openapi.json",
+      "required": false
+    }
+  }
+}
