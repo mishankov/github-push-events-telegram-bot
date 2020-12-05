@@ -1,22 +1,18 @@
-import os
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from github.models.push_webhook_payload import PushWebhookPayload
 from telegram.bot import Bot
 from telegram.utils import escape_html
+from config import AppConfig as config
 
-TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
-TELEGRAM_USER_ID = os.getenv("TELEGRAM_USER_ID", "")
-GITHUB_WEBHOOK_SECRET = os.getenv("GITHUB_WEBHOOK_SECRET", "secret")
 
-if TELEGRAM_BOT_TOKEN == "":
+if config.TELEGRAM_BOT_TOKEN == "":
     raise Exception("TELEGRAM_BOT_TOKEN environmental variable is not set")
 else:
-    bot = Bot(TELEGRAM_BOT_TOKEN)
+    bot = Bot(config.TELEGRAM_BOT_TOKEN)
 
-if TELEGRAM_USER_ID == "":
+if config.TELEGRAM_USER_ID == "":
     raise Exception("TELEGRAM_USER_ID environmental variable is not set")
 
 
@@ -31,7 +27,7 @@ app.add_middleware(
 )
 
 
-@app.post("/github/repository/webhook/{}/".format(GITHUB_WEBHOOK_SECRET))
+@app.post("/github/repository/webhook/{}/".format(config.GITHUB_WEBHOOK_SECRET))
 def receive_github_repository_webhook(payload: PushWebhookPayload):
     message = "New push in repository <a href='{}'>{}</a>".format(
         payload.repository.html_url, escape_html(payload.repository.full_name)
@@ -65,7 +61,7 @@ def receive_github_repository_webhook(payload: PushWebhookPayload):
                     escape_html(", ".join(commit.modified))
                 )
 
-    bot.send_message(chat_id=TELEGRAM_USER_ID, parse_mode="HTML", text=message)
+    bot.send_message(chat_id=config.TELEGRAM_USER_ID, parse_mode="HTML", text=message)
 
     return {"status": "OK"}
 
