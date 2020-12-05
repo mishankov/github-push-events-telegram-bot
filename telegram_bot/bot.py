@@ -20,6 +20,6 @@ class Bot:
     def send_message(self, chat_id, text, parse_mode):
         params = dict(chat_id=chat_id, text=text, parse_mode=parse_mode)
 
-        resp = requests.get(self.url + "/sendMessage", params=params)
+        resp = requests.get(self.url + "/sendMessage", data=params)
 
         return resp

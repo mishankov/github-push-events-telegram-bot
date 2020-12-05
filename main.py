@@ -32,22 +32,23 @@ def receive_github_repository_webhook(payload: PushWebhookPayload):
     message = "New push in repository [{}]({})".format(
         payload.repository.full_name, payload.repository.html_url
     )
+    # print(message)
     if payload.sender is not None:
         message += " from [{}]({})".format(
             payload.sender.login, payload.sender.html_url
         )
-
+    # print(message)
     if len(payload.commits) > 0:
         message += "\n *Commits:*"
         for commit in payload.commits:
-            message += "\n- _[{}]({})_".format(commit.id, commit.url)
-            message += "\n Message: {}".format(commit.message)
+            message += "\n\- _[{}]({})_".format(commit.id, commit.url)
+            message += "\n  _Message:_ {}".format(commit.message)
 
             if len(commit.added) > 0:
                 message += "\n  _Added:_ {}".format(",".join(commit.added))
 
             if len(commit.removed) > 0:
-                message += "\n  Removed:_ {}".format(",".join(commit.removed))
+                message += "\n  _Removed:_ {}".format(",".join(commit.removed))
 
             if len(commit.modified) > 0:
                 message += "\n  _Modified:_ {}".format(",".join(commit.modified))
