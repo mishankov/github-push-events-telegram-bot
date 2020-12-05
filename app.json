@@ -4,9 +4,6 @@
   "website": "https://github.com/mishankov/github-push-events-telegram-bot",
   "repository": "https://github.com/mishankov/github-push-events-telegram-bot",
   "keywords": ["python", "fastapi", "github", "webhook", "telegram"],
-  "scripts": {
-    "postdeploy": "bundle exec rake bootstrap"
-  },
   "env": {
     "TELEGRAM_BOT_TOKEN": {
       "description": "Token of Telegram bot",
