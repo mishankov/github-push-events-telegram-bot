@@ -2,7 +2,7 @@ FROM python:3.9-slim-buster AS builder
 RUN mkdir /app
 WORKDIR /app
 COPY requirements.txt .
-RUN apt-get update && apt-get install -y gcc make \
+RUN apt-get update && apt-get install -y --no-install-recommends gcc make \
   && rm -rf /var/lib/apt/lists/* \
   && python3 -m venv venv \
 	&& . venv/bin/activate \
