@@ -37,7 +37,15 @@ gunicorn --chdir src main:app -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000
 
 This whould run you application in port `8000`. More about that in [Gunicorn documentation](https://docs.gunicorn.org/en/stable/configure.html)
 
-## Deploy with Heroku
+## Run with Docker
+
+To run this application with docker use `docker run` command similar to this
+
+```bash
+docker run -p 8000:8000 -e TELEGRAM_BOT_TOKEN=<TELEGRAM_BOT_TOKEN> -e TELEGRAM_CHAT_ID=<TELEGRAM_CHAT_ID> -d mishankov/github-push-events-telegram-bot:latest
+```
+
+## Deploy to Heroku
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
