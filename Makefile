@@ -8,6 +8,9 @@ run:
 	. venv/bin/activate
 	gunicorn --chdir src main:app -k uvicorn.workers.UvicornWorker
 
+build-local:
+	docker build . -t gpetb
+
 commit-all:
 ifdef m
 	black .
