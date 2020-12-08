@@ -5,7 +5,7 @@ COPY requirements.txt .
 RUN apt-get update && apt-get install -y --no-install-recommends gcc make libc6-dev \
   && rm -rf /var/lib/apt/lists/* \
   && python3 -m venv venv \
-	&& . venv/bin/activate \
+  && . venv/bin/activate \
   && pip install --upgrade pip \
   && pip install -r requirements.txt
 
