@@ -60,7 +60,7 @@ def receive_github_repository_webhook(payload: PushWebhookPayload):
                     escape_html(", ".join(commit.modified))
                 )
 
-    bot.send_message(chat_id=config.TELEGRAM_CHAT_ID, parse_mode="HTML", text=message)
+        bot.send_message(chat_id=config.TELEGRAM_CHAT_ID, parse_mode="HTML", text=message)
 
     return {"status": "OK"}
 
