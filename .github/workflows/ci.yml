@@ -19,7 +19,7 @@ jobs:
         run: pip install black
       - name: Run black --check .
         run: black --check .
-  
+
   test:
     runs-on: ${{ matrix.os }}
     strategy:
@@ -39,4 +39,3 @@ jobs:
     - name: Run Tests
       run: |
         python -m pytest
-  
