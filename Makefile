@@ -1,4 +1,10 @@
-test:
+lint:
+	(\
+		. venv/bin/activate; \
+		venv/bin/black .; \
+	)
+
+test: lint
 	( \
 		. venv/bin/activate; \
 		export TELEGRAM_BOT_TOKEN="TEST_TOKEN"; \
