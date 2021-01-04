@@ -8,7 +8,7 @@ fastapi==0.63.0
 gunicorn==20.0.4
 h11==0.12.0
 httptools==0.1.1
-idna==2.10
+idna==3.0
 iniconfig==1.1.1
 mypy-extensions==0.4.3
 packaging==20.8
