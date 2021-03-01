@@ -15,7 +15,7 @@ packaging==20.9
 pathspec==0.8.1
 pluggy==0.13.1
 py==1.10.0
-pydantic==1.7.3
+pydantic==1.8
 pyparsing==2.4.7
 pytest==6.2.2
 regex==2020.11.13
