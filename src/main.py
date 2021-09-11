@@ -43,7 +43,7 @@ def receive_github_repository_webhook(payload: PushWebhookPayload):
             message += "\n<a href='{}'>{}</a>".format(
                 commit.url, escape_html(commit.id)
             )
-            message += "\n  <i>Message:</i> {}".format(escape_html(commit.message))
+            message += "\n  <i>Message:</i> {}".format(commit.message)
 
             if len(commit.added) > 0:
                 message += "\n  <i>Added:</i> {}".format(
